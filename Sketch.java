@@ -6,12 +6,6 @@ public class Sketch extends PApplet {
 	PImage imgMonastery;
   PImage imgRowlet;
 
-  // Circle location and speeds
-  float floatCircleX = 200;
-  float floatCircleY = 300;
-  float floatCircleSpeedX = 5;
-  float floatCircleSpeedY = -5;
-
   // Rowlet location and speeds
   float floatRowletX = -5;
   float floatRowletY = -50;
@@ -49,29 +43,49 @@ public class Sketch extends PApplet {
     }
 
     // Print Circle
-    fill(238, 10, 158);
-    ellipse(floatCircleX, floatCircleY, 200, 200);
+    //fill(238, 10, 158);
+    //ellipse(floatCircleX, floatCircleY, 200, 200);
 
     // Update Circle's position
-    floatCircleX = floatCircleX + floatCircleSpeedX;
-    floatCircleY = floatCircleY + floatCircleSpeedY;
+    // floatCircleX = floatCircleX + floatCircleSpeedX;
+    // floatCircleY = floatCircleX * floatCircleX;
 
     // Basic Edge Detection and Switch Direction when CIRCLE hits the border.
-    if(floatCircleX < 0) {
-      floatCircleX = floatCircleX * -1;
-    }
-    else if(floatCircleX > width - 200) {
-      floatCircleX = floatCircleX * -1;
-    }
+    // if(floatCircleX < 0) {
+      //floatCircleX = floatCircleX * -1;
+    //}
+    //else if(floatCircleX > width - 200) {
+    //  floatCircleX = floatCircleX * -1;
+    //}
 
-    if(floatCircleY < 100) {
-      floatCircleY = floatCircleY * -1;
+   // if(floatCircleY < 100) {
+     // floatCircleY = floatCircleY * -1;
+    //}
+    //else if(floatCircleY > height + 200) {
+    //  floatCircleY = floatCircleY * -1;
+   // }
+
+    
+    double circleX = 100;
+    double circleY = 100;
+    double circleRadius = 50;
+    int time = 1;
+
+    for(time = 1; time <=100; time++){
+
+    double orbitalPeriod = 2000.0;
+    double portion = (time % orbitalPeriod) / orbitalPeriod;
+    double angle = portion * 2 * Math.PI;
+
+    circleX = circleX + circleRadius * Math.sin(angle);
+    circleY = circleY + circleRadius * Math.sin(angle);
+
+    fill(240, 128, 123); 
+    ellipse((float)circleX, (float)circleY, (float)circleRadius, (float)circleRadius);
     }
-    else if(floatCircleY > height + 200) {
-      floatCircleY = floatCircleY * -1;
-    }
+    
+
   }
-
     
   
   
