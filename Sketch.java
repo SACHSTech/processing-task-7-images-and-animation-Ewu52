@@ -5,12 +5,24 @@ public class Sketch extends PApplet {
 	
 	PImage imgMonastery;
   PImage imgRowlet;
+  PImage imgSupaHotFire;
 
   // Rowlet location and speeds
   float floatRowletX = -5;
   float floatRowletY = -50;
-  float floatRowletSpeedX = 5;
+  float floatRowletSpeedX = 10;
   float floatRowletSpeedY = 0;
+
+  // Circle location and speeds
+  float floatCircleX = 800;
+  float floatCircleY = 400;
+  float floatCircleSpeedX = 10;
+  float floatCircleSpeedY = 10;
+
+  // Supa Hot Fire locations
+  int radian;
+  float imageX = 500;
+  float imageY = 300;
   
   public void settings() {
 	// put your size call here
@@ -21,6 +33,7 @@ public class Sketch extends PApplet {
   public void setup() {
     imgMonastery = loadImage("garreg mach monastery.png");
     imgRowlet = loadImage("rowlet-removebg-preview.png");
+    imgSupaHotFire = loadImage("supa hot fire.jpg");
   }
 
   public void draw() {
@@ -43,50 +56,37 @@ public class Sketch extends PApplet {
     }
 
     // Print Circle
-    //fill(238, 10, 158);
-    //ellipse(floatCircleX, floatCircleY, 200, 200);
+    fill(238, 10, 158);
+    ellipse(floatCircleX, floatCircleY, 200, 200);
 
     // Update Circle's position
-    // floatCircleX = floatCircleX + floatCircleSpeedX;
-    // floatCircleY = floatCircleX * floatCircleX;
+    floatCircleX = floatCircleX + floatCircleSpeedX;
+    floatCircleY = floatCircleY + floatCircleSpeedY;
 
     // Basic Edge Detection and Switch Direction when CIRCLE hits the border.
-    // if(floatCircleX < 0) {
-      //floatCircleX = floatCircleX * -1;
-    //}
-    //else if(floatCircleX > width - 200) {
-    //  floatCircleX = floatCircleX * -1;
-    //}
-
-   // if(floatCircleY < 100) {
-     // floatCircleY = floatCircleY * -1;
-    //}
-    //else if(floatCircleY > height + 200) {
-    //  floatCircleY = floatCircleY * -1;
-   // }
-
-    
-    double circleX = 100;
-    double circleY = 100;
-    double circleRadius = 50;
-    int time = 1;
-
-    for(time = 1; time <=100; time++){
-
-    double orbitalPeriod = 2000.0;
-    double portion = (time % orbitalPeriod) / orbitalPeriod;
-    double angle = portion * 2 * Math.PI;
-
-    circleX = circleX + circleRadius * Math.sin(angle);
-    circleY = circleY + circleRadius * Math.sin(angle);
-
-    fill(240, 128, 123); 
-    ellipse((float)circleX, (float)circleY, (float)circleRadius, (float)circleRadius);
+    if(floatCircleX < 0 + 130) {
+      floatCircleSpeedX = floatCircleSpeedX * -1;
     }
-    
+    else if(floatCircleX > width - 170) {
+      floatCircleSpeedX = floatCircleSpeedX * -1;
+    }
+
+    if(floatCircleY < 100) {
+      floatCircleSpeedY = floatCircleSpeedY * -1;
+    }
+    else if(floatCircleY > height - 150) {
+      floatCircleSpeedY = floatCircleSpeedY * -1;
+
+    }
+
+    // Make Supa Hot Fire move in a circle
+    imgSupaHotFire.resize(200, 200);
+    radian += 2;
+    imageX += (float) (100 * Math.sin(radian));
+    imageY += (float) (100 * Math.cos(radian));
+    image(imgSupaHotFire, imageX, imageY); 
+
 
   }
     
-  
-  
 }
